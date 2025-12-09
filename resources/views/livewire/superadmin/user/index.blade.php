@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    Isi Konten
+                    DATA USER
                 </div>
             </div>
             <!-- /.card -->
