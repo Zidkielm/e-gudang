@@ -58,7 +58,49 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    DATA USER
+                    <div class="table-responsive">
+                        <table class="table-hover table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($user as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        @if ($item->role == 'Super Admin')
+                                            <td>
+                                                <span class="badge badge-info">
+                                                    {{ $item->role }}
+                                                </span>
+                                            </td>
+                                        @elseif ($item->role == 'Admin')
+                                            <td>
+                                                <span class="badge badge-secondary">
+                                                    {{ $item->role }}
+                                                </span>
+                                            </td>
+                                        @endif
+                                        <td>
+                                            <button class="btn btn-sm btn-warning mr-2">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- /.card -->
