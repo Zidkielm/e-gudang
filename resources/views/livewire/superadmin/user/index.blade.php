@@ -58,6 +58,22 @@
                     </div>
                 </div>
                 <div class="card-body">
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="col-2">
+                            <select wire:model.live="paginate" class="form-control">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <input wire:model.live="search" type="text" class="form-control"
+                                placeholder="Pencarian...">
+                        </div>
+                    </div>
+
                     <div class="table-responsive">
                         <table class="table-hover table">
                             <thead>
@@ -72,7 +88,7 @@
                             <tbody>
                                 @foreach ($user as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $loop->iteration + $user->firstItem() - 1 }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->email }}</td>
                                         @if ($item->role == 'Super Admin')
@@ -100,6 +116,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $user->links() }}
                     </div>
                 </div>
             </div>
