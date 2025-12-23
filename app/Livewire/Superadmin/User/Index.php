@@ -16,6 +16,7 @@ class Index extends Component
     public function render()
     {
         $data = array(
+            'title'=> 'Data User',
             'user' => User::where('nama', 'like', '%' . $this->search . '%')
                 ->orderBy('role', 'asc')->paginate($this->paginate),
         );
