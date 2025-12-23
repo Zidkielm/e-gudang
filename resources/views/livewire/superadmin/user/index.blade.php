@@ -7,7 +7,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1><i class="fas fa-user mr-1"></i>
-                            @yield('title')</h1>
+                            {{ $title }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -18,7 +18,7 @@
                             </li>
                             <li class="breadcrumb-item active">
                                 <i class="fas fa-user mr-1"></i>
-                                @yield('title')
+                                {{ $title }}
                             </li>
                         </ol>
                     </div>
@@ -34,9 +34,10 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#createModal">
                                 <i class="fas fa-plus mr-1"></i>
-                                Tambah Data</button>
+                                Tambah Data
+                            </button>
                         </div>
                         <div class="btn-group dropleft">
                             <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
@@ -124,6 +125,9 @@
 
         </section>
         <!-- /.content -->
+        {{-- create modal --}}
+        @include('livewire.superadmin.user.create')
+        {{-- create modal --}}
     </div>
 
 </div>
