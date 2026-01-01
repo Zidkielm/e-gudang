@@ -34,7 +34,8 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+                            <button wire:click="create" class="btn btn-primary" data-toggle="modal"
+                                data-target="#createModal">
                                 <i class="fas fa-plus mr-1"></i>
                                 Tambah Data
                             </button>
