@@ -13,13 +13,27 @@ class Index extends Component
     public $paginate = '10';
     public $search = '';
 
+    public $nama;
+
     public function render()
     {
-        $data = array(
-            'title'=> 'Data User',
+        $data = [
+            'title' => 'Data User',
             'user' => User::where('nama', 'like', '%' . $this->search . '%')
-                ->orderBy('role', 'asc')->paginate($this->paginate),
-        );
+                ->orderBy('role', 'asc')
+                ->paginate($this->paginate),
+        ];
         return view('livewire.superadmin.user.index', $data);
+    }
+
+    public function create(){
+        $this->resetValidation();
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'nama' => 'required',
+        ]);
     }
 }
