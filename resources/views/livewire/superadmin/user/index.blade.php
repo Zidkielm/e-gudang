@@ -129,6 +129,21 @@
         {{-- create modal --}}
         @include('livewire.superadmin.user.create')
         {{-- create modal --}}
+        {{-- close create modal --}}
+        @script
+            <script>
+                $wire.on('closeCreateModal', () => {
+                    $('#createModal').modal('hide');
+                    Swal.fire({
+                        title: "Sukses!",
+                        text: "Data berhasil ditambahkan!",
+                        icon: "success"
+                    });
+                });
+            </script>
+        @endscript
+        {{-- close create modal --}}
+
     </div>
 
 </div>
