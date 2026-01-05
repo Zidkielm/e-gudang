@@ -107,8 +107,9 @@
                                             </td>
                                         @endif
                                         <td>
-                                            <button class="btn btn-sm btn-warning mr-2">
-                                                <i class="fas fa-edit"></i>
+                                            <button wire:click="edit({{ $item->id }})" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#editModal">
+                                                <i class="fas fa-edit "></i>
                                             </button>
                                             <button class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash"></i>
@@ -144,6 +145,9 @@
         @endscript
         {{-- close create modal --}}
 
+        {{-- eedit modal --}}
+        @include('livewire.superadmin.user.edit')
+        {{-- eedit modal --}}
     </div>
 
 </div>
