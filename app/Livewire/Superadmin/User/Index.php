@@ -65,4 +65,13 @@ class Index extends Component
 
         $this->dispatch('closeCreateModal'); 
     }
+
+    public function edit($id){
+        $user = User::findOrFail($id);
+        $this->nama = $user->nama;
+        $this->email = $user->email;
+        $this->role= $user->role;
+        $this->nama = $user->nama;
+        $this->nama = $user->nama;
+    }
 }
