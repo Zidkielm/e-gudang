@@ -14,7 +14,7 @@ class Index extends Component
     public $paginate = '10';
     public $search = '';
 
-    public $nama, $email, $role, $password, $password_confirmation;
+    public $nama, $email, $role, $password, $password_confirmation, $user_id;
 
     public function render()
     {
@@ -63,15 +63,23 @@ class Index extends Component
         $user->password = Hash::make($this->password);
         $user->save();
 
-        $this->dispatch('closeCreateModal'); 
+        $this->dispatch('closeCreateModal');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $user = User::findOrFail($id);
         $this->nama = $user->nama;
         $this->email = $user->email;
-        $this->role= $user->role;
-        $this->nama = $user->nama;
-        $this->nama = $user->nama;
+        $this->role = $user->role;
+        $this->user_id = $user->id;
+    }
+
+    public function update($id){
+        $user = User::findOrFail($id);
+
+        $this->validate([
+            'nama' => 'required';
+        ]);
     }
 }
