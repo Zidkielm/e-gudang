@@ -89,7 +89,7 @@
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
                     <i class="fas fa-times mr-1"></i>
                     Tutup</button>
-                <button wire:click="store" type="button" class="btn btn-warning btn-sm">
+                <button wire:click="update({{ $user_id }})" type="button" class="btn btn-warning btn-sm">
                     <i class="fas fa-edit mr-1"></i>
                     Update</button>
             </div>
