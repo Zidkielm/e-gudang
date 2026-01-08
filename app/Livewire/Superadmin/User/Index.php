@@ -40,7 +40,7 @@ class Index extends Component
         $this->validate(
             [
                 'nama' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'role' => 'required',
                 'password' => 'required|min:8|confirmed',
                 'password_confirmation' => 'required',
@@ -49,6 +49,7 @@ class Index extends Component
                 'nama.required' => 'Nama tidak boleh kosong',
                 'email.required' => 'Email tidak boleh kosong',
                 'email.email' => 'Email tidak valid',
+                'email.unique' => 'Email sudah terdaftar',
                 'role.required' => 'Role tidak boleh kosong',
                 'password.required' => 'Password tidak boleh kosong',
                 'password.min' => 'Password harus lebih dari 8 karakter',
@@ -68,6 +69,7 @@ class Index extends Component
 
     public function edit($id)
     {
+        $this->resetValidation();
         $user = User::findOrFail($id);
         $this->nama = $user->nama;
         $this->email = $user->email;
@@ -75,11 +77,35 @@ class Index extends Component
         $this->user_id = $user->id;
     }
 
-    public function update($id){
+    public function update($id)
+    {
         $user = User::findOrFail($id);
 
-        $this->validate([
-            'nama' => 'required';
-        ]);
+        $this->validate(
+            [
+                'nama' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'role' => 'required',
+                'password' => 'nullable|min:8|confirmed',
+            ],
+            [
+                'nama.required' => 'Nama tidak boleh kosong',
+                'email.required' => 'Email tidak boleh kosong',
+                'email.email' => 'Email tidak valid',
+                'email.unique' => 'Email sudah terdaftar',
+                'role.required' => 'Role tidak boleh kosong',
+                'password.min' => 'Password harus lebih dari 8 karakter',
+                'password.confirmed' => 'Password konfirmasi tidak sama',
+            ],
+        );
+        $user->nama = $this->nama;
+        $user->email = $this->email;
+        $user->role = $this->role;
+        if ($this->password) {
+            $user->password = Hash::make($this->password);
+        }
+        $user->save();
+
+        $this->dispatch('closeEditModal');
     }
 }
