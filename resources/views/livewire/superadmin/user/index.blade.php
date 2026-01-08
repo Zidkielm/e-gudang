@@ -145,9 +145,24 @@
         @endscript
         {{-- close create modal --}}
 
-        {{-- eedit modal --}}
+        {{-- edit modal --}}
         @include('livewire.superadmin.user.edit')
-        {{-- eedit modal --}}
+        {{-- edit modal --}}
+
+        {{-- close Edit Modal --}}
+         @script
+            <script>
+                $wire.on('closeEditModal', () => {
+                    $('#editModal').modal('hide');
+                    Swal.fire({
+                        title: "Sukses!",
+                        text: "Data berhasil diupdate!",
+                        icon: "success"
+                    });
+                });
+            </script>
+        @endscript
+        {{-- close Edit Modal --}}
     </div>
 
 </div>
